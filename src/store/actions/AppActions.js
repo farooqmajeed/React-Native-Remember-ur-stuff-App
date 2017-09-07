@@ -14,8 +14,9 @@ export class AppActions {
                 .then((data) => {
                     dispatch({ type: ADD_ITEM });
                     console.log("ITEM ADD", data);
-                    // Actions.patientList({ type: 'reset' })
+                    alert("successfully Add")
                 });
+                Actions.refresh();
         };
     }
     static viewItems = () => {
@@ -29,13 +30,13 @@ export class AppActions {
         };
     };
     static RemoveItems = (UserObj) => {
+      console.log("UserObj", UserObj);  
         return (dispatch) => {
-            firebase.database().ref(`/users/MyItems`)
+            firebase.database().ref(`/users/MyItems/`+ UserObj)
                 .remove()
                 .then((data) => {
                     dispatch({ type: REMOVE_ITEMS });
                     console.log("ITEM REmove", data);
-                    // Actions.patientList({ type: 'reset' })
                 });
         }
     }
