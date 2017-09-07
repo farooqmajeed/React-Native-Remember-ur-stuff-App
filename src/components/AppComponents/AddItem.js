@@ -4,7 +4,7 @@ import { Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import DatePicker from 'react-native-datepicker'
 import { Container, Content, Header, Left, Body, Right, Button, Icon, Title, CardItem, Item, Input, Card, H2, Label, Form } from 'native-base';
-import {AppActions} from '../../store/actions/AppActions';
+import { AppActions } from '../../store/actions/AppActions';
 
 class AddItem extends Component {
     constructor(Props) {
@@ -17,7 +17,7 @@ class AddItem extends Component {
     handleSubmit = () => {
         console.log("hit")
         // e.preventDefault();
-        let date = this.state.date.getDate() + "." + this.state.date.getMonth() + "." + this.state.date.getFullYear();
+        let date = this.state.date.getDate() + "/" + this.state.date.getMonth() + "/" + this.state.date.getFullYear();
         let name = this.state.name.toLowerCase();
         let place = this.state.place
         let userObj = {
@@ -33,7 +33,6 @@ class AddItem extends Component {
         return (
             <Container style={styles.container} >
                 <Content>
-                    <H2 style={{ textAlign: 'center', marginTop: 50 }} >Item Information</H2>
                     <Form style={styles.cardItem} >
                         <Item floatingLabel>
                             <Label>Item Name</Label>
@@ -62,8 +61,6 @@ class AddItem extends Component {
                             style={{ width: 350, marginTop: 20 }}
                             date={this.state.date}
                             mode="date"
-
-
                             placeholder="select date"
                             format="YYYY.DD.MM"
                             minDate={new Date()}
@@ -80,19 +77,18 @@ class AddItem extends Component {
                                 dateInput: {
                                     marginLeft: 36
                                 }
-                                // ... You can check the source to find the other keys.
                             }}
                             value={this.state.value}
                             onDateChange={(date) => { this.setState({ date: date }) }}
                         />
 
-
-                        <Button block success onPress={() => this.handleSubmit()} >
+                        <Button block info style={{ margin: 5 }} onPress={() => this.handleSubmit()} >
                             <Text>Add To Remember </Text>
                         </Button>
+                        <Button block info style={{ margin: 5 }} onPress={() => Actions.viewItem()}>
+                            <Text> View Items </Text>
+                        </Button>
                     </Form>
-
-
                 </Content>
             </Container>
         );
@@ -103,9 +99,10 @@ class AddItem extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#E3F2FD',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
+        marginTop: -30
     },
     cardItem: {
         flex: 1,
