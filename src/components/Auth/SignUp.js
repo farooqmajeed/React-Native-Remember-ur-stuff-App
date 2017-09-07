@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text } from 'react-native';
+import { Text, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Content, Card, CardItem, Form, Item, Input, Label, Spinner, Button } from 'native-base';
 import { AuthActions } from '../../store/actions'
@@ -27,8 +27,8 @@ class SignupForm extends Component {
             return <Spinner size="large" style={styles.spinnerStyle} />;
         }
         return (
-            <Button block success style={styles.buttonStyle} onPress={this.onButtonPress.bind(this)} >
-                <Text> SignUp </Text>
+            <Button rounded info style={styles.buttonStyle} onPress={this.onButtonPress.bind(this)} >
+                <Text style={{ marginLeft: 30, color: 'black' }}>SignUp </Text>
             </Button>
 
         );
@@ -37,55 +37,56 @@ class SignupForm extends Component {
         return (
 
             <Container style={styles.containerStyle}>
-                <Content >
-                    <Form >
-                        <CardItem>
-                            <Item floatingLabel>
-                                <Label>EMAIL</Label>
-                                <Input
-                                    onChangeText={this.onEmailChange.bind(this)}
-                                    value={this.props.email} />
-                            </Item>
-                        </CardItem>
+                <Image source={{ uri: 'https://ae01.alicdn.com/kf/HTB1RS3cQFXXXXbjXFXXq6xXFXXXm/4-pcs-Lot-Macaron-memo-pad-and-font-b-sticky-b-font-font-b-notes-b.jpg' }}
+                    style={{
+                        flex: 1,
+                        width: null,
+                        height: null,
+                        position: 'absolute',
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        resizeMode: 'cover',
+                        opacity: 0.3
+                    }}
 
-                        <CardItem>
-                            <Item floatingLabel>
-                                <Label>PASSWORD</Label>
-                                <Input
-                                    secureTextEntry
-                                    onChangeText={this.onPasswordChange.bind(this)}
-                                    value={this.props.password}
-                                />
-                            </Item>
-                        </CardItem>
-                        <CardItem>
-                            <Item floatingLabel>
-                                <Label>RETRY PASSWORD</Label>
-                                <Input
-                                    secureTextEntry
-                                    onChangeText={this.onRetryPassword.bind(this)}
-                                    value={this.props.retryPassword}
-                                />
-                            </Item>
-                        </CardItem>
-                        <CardItem>
-                            {this.renderButton()}
+                >
 
-                            <Text style={styles.errorTextStyle} >
-                                {this.props.error}
-                            </Text>
-                        </CardItem>
-                        <CardItem>
-                            <Text style={{ marginLeft: 90, marginTop: 30 }}>  Do not have an account? </Text>
-                        </CardItem>
-                        <CardItem>
-                            <Text style={styles.textStyle2} onPress={() => Actions.login()}> Login  </Text>
-                        </CardItem>
+                </Image>
+                <Form style={styles.formstyle}>
+                    <CardItem style={{ backgroundColor: '#E3F2FD', opacity: 0.9, borderTopLeftRadius: 20, borderTopRightRadius: 20 }} >
+                        <Item rounded>
+                            <Label style={{ marginLeft: 10, color: 'black' }} >EMAIL</Label>
+                            <Input
+                                onChangeText={this.onEmailChange.bind(this)}
+                                value={this.props.email} />
+                        </Item>
+                    </CardItem>
 
-                    </Form>
-                </Content>
+                    <CardItem style={{ backgroundColor: '#E3F2FD', opacity: 0.9 }}>
+                        <Item rounded>
+                            <Label>PASSWORD</Label>
+                            <Input
+                                secureTextEntry
+                                onChangeText={this.onPasswordChange.bind(this)}
+                                value={this.props.password}
+                            />
+                        </Item>
+                    </CardItem>
+                    <CardItem style={{ backgroundColor: '#E3F2FD', opacity: 0.9, borderBottomLeftRadius: 20, borderBottomLeftRadius: 20 }}>
+                        {this.renderButton()}
 
-            </Container>
+                        <Text style={styles.errorTextStyle} >
+                            {this.props.error}
+                        </Text>
+                    </CardItem>
+                    <CardItem style={{ backgroundColor: '#E3F2FD', opacity: 0.3 }}>
+                        <Text style={styles.textStyle2} onPress={() => Actions.login()} > Login  </Text>
+                    </CardItem>
+
+                </Form>
+            </Container >
         );
     };
 }
@@ -98,10 +99,13 @@ const styles = {
         marginTop: 50
     },
     containerStyle: {
-        marginTop: 100,
-        marginLeft: 10,
-        paddingTop: 10,
-        width: 380
+        marginTop: -80,
+        width: 420,
+    },
+    formstyle: {
+        marginLeft: 15,
+        marginTop: 180,
+        width: 380,
     },
     buttonStyle: {
         marginLeft: 80,
@@ -109,11 +113,20 @@ const styles = {
     },
     textStyle2: {
         marginTop: -15,
-        color: 'green',
+        color: 'black',
         marginLeft: 150,
     },
     spinnerStyle: {
         marginLeft: 160
+    },
+    imageStyle: {
+        width: 100,
+        height: 100,
+    },
+    cardStyle: {
+        width: 320,
+        backgroundColor: '#E8F5E9',
+        opacity: 0.8
     }
 
 };
